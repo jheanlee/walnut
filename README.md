@@ -15,6 +15,28 @@ well.
 
 This means that if you lose your secret key, you lose the ability to decrypt your items.
 
+## Build from Source
+
+1. Clone this repo and `cd` into project root.
+2. `cd` into `webui` and build the webui.
+
+```shell
+cd webui
+npm ci
+npm run build
+```
+
+3. Build the core binary.
+
+```shell
+cd ..
+cargo build --release --bin walnut
+```
+
+The webui will be embedded in the binary.
+
+The binary will be `target/release/walnut`.
+
 ## License
 
 Copyright 2026 Jhe-An Lee
