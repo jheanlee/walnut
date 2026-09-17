@@ -1,17 +1,44 @@
 # Walnut
-work in progress
+
+A password manager whose server never sees your secrets.
+
+**Important note: this project was written as a proof of concept. Do not use this in production.**
+
+## How it works
+
+Encryption and decryption are done using a locally generated key, which is encrypted using your master password and
+stored locally.
+
+Encryption and decryption are both done locally using that key. The server only serves as a storage for encrypted items;
+it does not see your keys or items in plain text. You verify your identity with the server using the master password as
+well.
+
+This means that if you lose your secret key, you lose the ability to decrypt your items.
+
+## Build from Source
+
+1. Clone this repo and `cd` into project root.
+2. `cd` into `webui` and build the webui.
+
+```shell
+cd webui
+npm ci
+npm run build
+```
+
+3. Build the core binary.
+
+```shell
+cd ..
+cargo build --release --bin walnut
+```
+
+The webui will be embedded in the binary.
+
+The binary will be `target/release/walnut`.
 
 ## License
+
 Copyright 2026 Jhe-An Lee
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+This project is licensed under the [Apache License 2.0](LICENSE).
